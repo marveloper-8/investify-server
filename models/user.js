@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    emailToken:{
+        type: String,
+        required: true
+    },
     phone:{
         type: Number,
         required: true
@@ -36,6 +40,10 @@ const userSchema = new mongoose.Schema({
     netWorth:{
         type: String,
         required: false
+    },
+    generatedPassword:{
+        type: String,
+        required: true
     },
     password:{
         type: String,

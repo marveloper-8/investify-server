@@ -17,6 +17,7 @@ mongoose.connection.on('error', () => {
     console.log("Error connecting", err)
 })
 
+
 require('./models/user')
 require('./models/admin')
 require('./models/post')
