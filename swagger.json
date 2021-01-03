@@ -1,0 +1,500 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Firstclass Brain API Documentation",
+        "description": "FirstClassBrain - Educational Learning Kit. by hendurhance. Portfolio. A mobile application for e-learning for students easy access to courses and class ...",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "firstclassbrain-server.herokuapp.com",
+    "basePath": "",
+    "tags": [
+        {
+            "name": "Student",
+            "description": "API for Students"
+        },
+        {
+            "name": "Instructor",
+            "description": "API for Instructors"
+        },
+        {
+            "name": "Payment",
+            "description": "API for Payment"
+        },
+        {
+            "name": "Cat",
+            "description": "API for cats"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/signup-student": {
+            "post": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "Create a new student...",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Create a new student...",
+                        "schema": {
+                            "$ref": "#/definitions/student"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Thanks for registering, please check your email to verify your account..."
+                    },
+                    "400": {
+                        "description": "Student already exist with that email..."
+                    }
+                }
+            }
+        },
+        "/signin-student": {
+            "post": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "Student signin...",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Student signin...",
+                        "schema": {
+                            "$ref": "#/definitions/signIn"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Invalid email or password..."
+                    }
+                }
+            }
+        },
+        "/web/signin-student": {
+            "post": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "Student signin...",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Student signin...",
+                        "schema": {
+                            "$ref": "#/definitions/studentSignin"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Invalid email or password..."
+                    }
+                }
+            }
+        },
+        "/verify-email/student": {
+            "post": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "Verifying student email address...",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Verifying student email address...",
+                        "schema": {
+                            "$ref": "#/definitions/emailToken"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Welcome to Firstclassbrain"
+                    }
+                }
+            }
+        },
+        "/all-student": {
+            "get": {
+                "tags": [
+                    "Student"
+                ],
+                "summary": "List of all student...",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Invalid email or password..."
+                    }
+                }
+            }
+        },
+        "/signup-instructor": {
+            "post": {
+                "tags": [
+                    "Instructor"
+                ],
+                "summary": "Create a new instructor...",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Create a new instructor...",
+                        "schema": {
+                            "$ref": "#/definitions/instructor"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Thanks for registering, please check your email to verify your account..."
+                    },
+                    "400": {
+                        "description": "Instructor already exist with that email..."
+                    }
+                }
+            }
+        },
+        "/verify-email/instructor": {
+            "post": {
+                "tags": [
+                    "Instructor"
+                ],
+                "summary": "Verifying instructor email address...",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Verifying instructor email address...",
+                        "schema": {
+                            "$ref": "#/definitions/emailToken"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/signin-instructor": {
+            "post": {
+                "tags": [
+                    "Instructor"
+                ],
+                "summary": "Instructor signin...",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Instructor signin...",
+                        "schema": {
+                            "$ref": "#/definitions/signIn"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Invalid email or password..."
+                    }
+                }
+            }
+        },
+        "/all-instructor": {
+            "get": {
+                "tags": [
+                    "Instructor"
+                ],
+                "summary": "List of all instructor...",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Invalid email or password..."
+                    }
+                }
+            }
+        },
+        "/verify/payment/monthly/:reference": {
+            "post": {
+                "tags": [
+                    "Payment"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Monthly subscription..."
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Paid succesfully..."
+                    },
+                    "400": {
+                        "description": "Network failure, pls try again..."
+                    }
+                }
+            }
+        },
+        "/verify/payment/quarterly/:reference": {
+            "post": {
+                "tags": [
+                    "Payment"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Quarterly subscription..."
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Paid succesfully..."
+                    },
+                    "400": {
+                        "description": "Network failure, pls try again..."
+                    }
+                }
+            }
+        },
+        "/verify/payment/biannually/:reference": {
+            "post": {
+                "tags": [
+                    "Payment"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Biannually subscription..."
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Paid succesfully..."
+                    },
+                    "400": {
+                        "description": "Network failure, pls try again..."
+                    }
+                }
+            }
+        },
+        "/verify/payment/annually/:reference": {
+            "post": {
+                "tags": [
+                    "Payment"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Annually subscription..."
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Paid succesfully..."
+                    },
+                    "400": {
+                        "description": "Network failure, pls try again..."
+                    }
+                }
+            }
+        },
+        "/cat": {
+            "get": {
+                "tags": [
+                    "Cat"
+                ],
+                "summary": "Get all cats in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/cat"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Cat"
+                ],
+                "summary": "Create a new cat",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Cat that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/cat"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "id": {
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "cat": {
+            "type": "object",
+            "properties": {
+                "genus": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "isHungry": {
+                    "type": "string"
+                },
+                "lastFedDate": {
+                    "type": "string"
+                }
+            }
+        },
+        "student": {
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "email":{
+                    "type": "string"
+                },
+                "phone":{
+                    "type": "number"
+                },
+                "address":{
+                    "type": "string"
+                },
+                "pic": {
+                    "type": "string"
+                },
+                "classSelected":{
+                    "type": "number"
+                },
+                "password":{
+                    "type": "string"
+                }
+            }
+        },
+        "emailToken": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "signIn": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "instructor": {
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "email":{
+                    "type": "string"
+                },
+                "phone":{
+                    "type": "number"
+                },
+                "pic": {
+                    "type": "string"
+                },
+                "password":{
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

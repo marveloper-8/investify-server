@@ -18,34 +18,45 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     bankAccountName:{
-        type: String,
-        default: "e.g John Doe"
+        type: String
     },
     bankNumber:{
-        type: String,
-        default: "e.g 010012231"
+        type: Number
     },
     bankName:{
-        type: String,
-        default: "e.g Zenith Bank"
+        type: String
     },
-    referredBy:{
-        type: String,
-        required: false
+    nokName:{
+        type: String
     },
-    netWorth:{
+    nokRelationship:{
+        type: String
+    },
+    nokEmail:{
+        type: String
+    },
+    nokPhone:{
+        type: String
+    },
+    originalPassword:{
         type: String,
-        required: false
+        required: true
     },
     password:{
         type: String,
         required: true
     },
+    referredBy:{
+        type: String
+    },
+    netWorth:{
+        type: String
+    },
     resetToken:String,
     expireToken:Date,
     pic:{
      type:String,
-     default:"https://res.cloudinary.com/cnq/image/upload/v1586197723/noimage_d4ipmd.png"
+     default:"https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"
     },
     followers:[{type:ObjectId,ref:"User"}],
     following:[{type:ObjectId,ref:"User"}]
