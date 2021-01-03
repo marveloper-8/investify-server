@@ -47,6 +47,7 @@ router.put('/:id', requireLogin, async (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
+
     const {
         appMode,
         firstName,
@@ -69,6 +70,7 @@ router.post('/signup', (req, res) => {
     if(!firstName || !lastName || !email || !phone || !password || !originalPassword){
         return res.status(422).json({error: "Please add all the fields"})
     }
+    
     User.findOne({email: email})
         .then((savedUser) => {
             if(savedUser){
@@ -519,10 +521,11 @@ router.post('/signup', (req, res) => {
                                     return res.status(422).json({error})
                                 } else {
                                     console.log('Email sent: ' + info.response)
-                                    res.json({message:"Thanks for registering, please check your email to verify your account..."})
+                                    res.json({message:"Thanks for registering, please check your email..."})
                                 }
                             })
 
+                            console.log(user)
                         })
                         .catch(err => {
                             console.log(err)
@@ -533,6 +536,7 @@ router.post('/signup', (req, res) => {
         .catch(err => {
             console.log(err)
         })
+
 })
 
 router.post('/signin', (req, res) => {

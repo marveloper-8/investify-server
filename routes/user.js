@@ -33,6 +33,22 @@ router.get('/user', (req, res) => {
     })
 })
 
+router.put('/user/update',requireLogin,(req,res)=>{
+
+    const { email,bankAccountName,bankNumber,bankName,netWorth } = req.body
+
+    if(!email || !bankAccountName || !bankNumber || !bankName || !netWorth) return res.status(422).json({error:"Add all fields..."})
+
+    User.findByIdAndUpdate(req.user._id,{$set:{email,bankAccountName,bankNumber,bankName,netWorth}},{new:true},
+        (err,result)=>{
+            if(err){
+                return res.status(422).json({error:"Error, pls try again..."})
+            }
+            res.json({message:"Profile updated sucessfully...", result})
+    })
+
+})
+
 router.post("/update-bank", requireLogin, (req,res) => {   
     User.findByIdAndUpdate(req.user._id, { bankName:  req.body.bankName, bankNumber:  req.body.bankNumber, bankAccountName:  req.body.bankAccountName },   
     function(err) {  
