@@ -10,11 +10,11 @@ const requireLogin = require('../middleware/requireLogin')
 
 const User = mongoose.model("User")
 
-const {EMAIL,CONTACT_EMAIL ,PASSWORD, MAILHOST, JWT_SECRET} = require('../config/keys')
+const {EMAIL,CONTACT_EMAIL ,PASSWORD, HOST, JWT_SECRET} = require('../config/keys')
 
 var passwordTransporter = nodemailer.createTransport({
-    // host: MAILHOST,
-    host: 'firstclassbrain.com',
+    host: HOST,
+    // host: 'firstclassbrain.com',
     port: 465,
     secure: true,
     auth: {
