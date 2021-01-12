@@ -1064,7 +1064,7 @@ router.post('/reset-password',(req,res)=>{
                         return res.status(422).json(error)
                     } else {
                         console.log('Email sent: ' + info.response)
-                        res.json({message:"check your email"})
+                        res.json({message:"check your email address"})
                     }
                 })
                 
