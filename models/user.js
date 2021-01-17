@@ -26,25 +26,32 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     bankAccountName:{
-        type: String
+        type: String,
+        default: "incomplete"
     },
     bankNumber:{
-        type: Number
+        type: String,
+        default: "incomplete"
     },
     bankName:{
-        type: String
+        type: String,
+        default: "incomplete"
     },
     nokName:{
-        type: String
+        type: String,
+        default: "incomplete"
     },
     nokRelationship:{
-        type: String
+        type: String,
+        default: "incomplete"
     },
     nokEmail:{
-        type: String
+        type: String,
+        default: "incomplete"
     },
     nokPhone:{
-        type: String
+        type: String,
+        default: "incomplete"
     },
     originalPassword:{
         type: String,
