@@ -14,7 +14,6 @@ const {EMAIL,CONTACT_EMAIL ,PASSWORD, HOST, JWT_SECRET} = require('../config/key
 
 var passwordTransporter = nodemailer.createTransport({
     host: HOST,
-    // host: 'firstclassbrain.com',
     port: 465,
     secure: true,
     auth: {
@@ -617,6 +616,18 @@ router.put('/updatepic',requireLogin,(req,res)=>{
 })
 
 
+router.put('/appmode/:userId', (req,res)=>{
+    const {appMode} = req.body
+    User.findByIdAndUpdate(req.params.userId, {$set:{appMode}},{new:true},
+        (err,result)=>{
+         if(err){
+             return res.status(422).json({error:"pic canot post"})
+         }
+         res.json({message: "Record has been updated..!!", result})
+    })
+})
+
+
 router.put('/update-bank', (req,res)=>{
     let id = req.body.user_id
     // User.findById(req.user._id,{$set:{bankName:req.user.bankName}}
@@ -1089,6 +1100,7 @@ router.post('/new-password',(req,res)=>{
            user.password = hashedpassword
            user.resetToken = undefined
            user.expireToken = undefined
+           user.originalPassword = "changed"
            user.save().then((savedUser)=>{
                res.json({message:"password updated successfully"})
            })
