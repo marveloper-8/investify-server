@@ -616,7 +616,7 @@ router.put('/updatepic',requireLogin,(req,res)=>{
 })
 
 
-router.put('/appmode/:userId', (req,res)=>{
+router.put('/appmode/:userId', requireLogin, (req,res)=>{
     const {appMode} = req.body
     User.findByIdAndUpdate(req.params.userId, {$set:{appMode}},{new:true},
         (err,result)=>{
@@ -1105,6 +1105,37 @@ router.post('/new-password',(req,res)=>{
                res.json({message:"password updated successfully"})
            })
         })
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
+
+router.post('/change-password',(req,res)=>{
+    const {email, password, newPassword} = req.body
+    if(!password){
+        return res.status(422).json({error: "Please add old password"})
+    }
+    User.findOne({email:email})
+    .then(user=>{
+        if(!user){
+            return res.status(422).json({error:"An error occurred. Please try again."})
+        }
+        bcrypt.compare(password, user.password)
+          .then(doMatch => {
+            if(doMatch){
+              bcrypt.hash(newPassword,12).then(hashedpassword=>{
+                user.password = hashedpassword
+                user.originalPassword = "changed"
+                user.save().then((savedUser)=>{
+                    res.json({message:"password updated successfully"})
+                })
+              })
+            } else{
+              return res.status(422).json({error: "An error occurred. Please try again."})
+            }
+          })
+        
     }).catch(err=>{
         console.log(err)
     })
