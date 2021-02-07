@@ -1141,4 +1141,35 @@ router.post('/change-password',(req,res)=>{
     })
 })
 
+
+router.post('/update-nok',(req,res)=>{
+    const {nokName, nokRelationship, nokEmail, nokPhone, email, password} = req.body
+    if(!password){
+        return res.status(422).json({error: "Incorrect password"})
+    }
+    User.findOne({email:email})
+    .then(user=>{
+        if(!user){
+            return res.status(422).json({error:"An error occurred. Please try again."})
+        }
+        bcrypt.compare(password, user.password)
+          .then(doMatch => {
+            if(doMatch){
+              user.nokName = nokName
+              user.nokRelationship = nokRelationship
+              user.nokEmail = nokEmail
+              user.nokPhone = nokPhone
+              user.save().then((savedUser)=>{
+                  res.json({message:"Updated successfully"})
+              })
+            } else{
+              return res.status(422).json({error: "An error occurred. Please try again."})
+            }
+          })
+        
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
 module.exports = router
