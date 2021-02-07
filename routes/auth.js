@@ -1132,7 +1132,7 @@ router.post('/change-password',(req,res)=>{
                 })
               })
             } else{
-              return res.status(422).json({error: "An error occurred. Please try again."})
+              return res.status(422).json({error: "Your current password is incorrect."})
             }
           })
         
@@ -1163,7 +1163,37 @@ router.post('/update-nok',(req,res)=>{
                   res.json({message:"Updated successfully"})
               })
             } else{
-              return res.status(422).json({error: "An error occurred. Please try again."})
+              return res.status(422).json({error: "Your current password is incorrect."})
+            }
+          })
+        
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
+
+router.post('/update-bank',(req,res)=>{
+    const {bankAccountName, bankNumber, bankName, email, password} = req.body
+    if(!password){
+        return res.status(422).json({error: "Incorrect password"})
+    }
+    User.findOne({email:email})
+    .then(user=>{
+        if(!user){
+            return res.status(422).json({error:"An error occurred. Please try again."})
+        }
+        bcrypt.compare(password, user.password)
+          .then(doMatch => {
+            if(doMatch){
+              user.bankAccountName = bankAccountName
+              user.bankNumber = bankNumber
+              user.bankName = bankName
+              user.save().then((savedUser)=>{
+                  res.json({message:"Updated successfully"})
+              })
+            } else{
+              return res.status(422).json({error: "Your current password is incorrect."})
             }
           })
         
