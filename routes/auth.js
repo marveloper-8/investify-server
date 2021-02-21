@@ -46,7 +46,6 @@ router.put('/:id', requireLogin, async (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
-
     const {
         appMode,
         firstName,

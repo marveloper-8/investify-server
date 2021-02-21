@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const adminSchema = new mongoose.Schema({
-    name:{
+    appMode:{
         type: String,
-        required: true
+        default: "light"
     },
     email:{
         type: String,
