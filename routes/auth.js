@@ -654,7 +654,7 @@ router.post('/reset-password',(req,res)=>{
         User.findOne({email:req.body.email})
         .then(user=>{
             if(!user){
-                return res.status(422).json({error:"Student dont exists with that email"})
+                return res.status(422).json({error:"User dont exists with that email"})
             }
             user.resetToken = token
             user.expireToken = Date.now() + 3600000

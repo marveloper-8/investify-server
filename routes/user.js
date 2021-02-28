@@ -60,4 +60,17 @@ router.post("/update-bank", requireLogin, (req,res) => {
     });  
 })  
 
+// list of students
+router.get('/all-users', (req, res) => {
+    User.find()
+        // .populate("postedBy", "_id fullName")
+        .then(user => {
+            res.json({user})
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
+
+
 module.exports = router
