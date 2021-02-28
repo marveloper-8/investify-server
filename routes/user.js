@@ -72,5 +72,21 @@ router.get('/all-users', (req, res) => {
         })
 })
 
+router.get('/user/details/:userId', (req, res) => {
+    User.findOne({_id: req.params.userId})
+    .then(user => {
+        User.find({userId: req.params.userId})
+        .populate("postedBy", "_id firstName")
+        .exec((err, users) => {
+            if(err){
+                return res.status(422).json({error: err})
+            }
+            res.json({user, users})
+        })
+    }).catch(err => {
+        return res.status(404).json({error: "Property not found"})
+    })
+})
+
 
 module.exports = router
