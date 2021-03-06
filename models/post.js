@@ -6,63 +6,43 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    price: {
-        type: Number,
-        required: true
-    },
-    numberOfUnits: {
-        type: Number,
-        requred: true
+    pic: {
+        type: String
     },
     propertyLocation: {
         type: String,
         required: true
     },
+    insurancePartner: {
+        type: String
+    },
+    numberOfUnits: {
+        type: Number
+    },
+    price: {
+        type: Number
+    },
     startDate: {
-        type: Date,
-        required: true
+        type: Date
     },
     maturityDate: {
-        type: Date,
-        required: true
-    },
-    investmentType: {
-        type: String,
-        required: true
-    },
-    unitType: {
-        type: String,
-        required: true
+        type: Date
     },
     expectedReturns: {
-        type: String,
-        required: true
+        type: Number
     },
-    insurancePartner: {
-        type: String,
-        required: true
+    payoutType: {
+        type: String
+    },
+    unitType: {
+        type: String
+    },
+    investmentType: {
+        type: String
     },
     aboutProperty: {
-        type: String,
-        required: true
+        type: String
     },
-    photo: {
-        type: String,
-        required: true
-    },
-    likes: [
-        {
-            type: ObjectId,
-            ref: "User"
-        }
-    ],
-    comments: [{
-        text:String,
-        postedBy:{
-            type: ObjectId,
-            ref: "User"
-        }
-    }],
     postedBy: {
         type: ObjectId,
         ref: "Admin"

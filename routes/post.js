@@ -7,54 +7,53 @@ const Post = mongoose.model("Post")
 // const Transaction = mongoose.model("Transaction")
 
 // posts
-router.post('/create-post', requireAdminLogin, (req, res) => {
+router.post('/create-property', (req, res) => {
     const {
-        propertyName, 
-        price,
-        numberOfUnits,
+        propertyName,
+        pic, 
         propertyLocation,
+        insurancePartner,
+        numberOfUnits,
+        price,
         startDate,
         maturityDate,
-        investmentType,
-        unitType,
         expectedReturns,
-        insurancePartner,
-        aboutProperty,
-        pic
+        payoutType,
+        unitType,
+        investmentType,
+        aboutProperty
     } = req.body
-    if(!propertyName || !price || !numberOfUnits || !propertyLocation || !startDate || !maturityDate || !investmentType || !unitType || !expectedReturns || !insurancePartner || !aboutProperty || !pic){
+    if(!propertyName || !propertyLocation){
         return res.status(422).json({error: "Please add all the fields"})
     }
-
-    req.admin.password = undefined
     
     const post = new Post({
-        propertyName, 
-        price,
-        numberOfUnits,
+        propertyName,
+        pic, 
         propertyLocation,
+        insurancePartner,
+        numberOfUnits,
+        price,
         startDate,
         maturityDate,
-        investmentType,
-        unitType,
         expectedReturns,
-        insurancePartner,
+        payoutType,
+        unitType,
+        investmentType,
         aboutProperty,
-        photo: pic,
         postedBy: req.admin
     })
     post.save().then(result => {
         return res.json({post: result})
     })
     .catch(err => {
+        return res.json({err})
         console.log(err)
     })
 })
 
-router.get('/all-post', (req, res) => {
+router.get('/all-properties', (req, res) => {
     Post.find()
-        .populate("postedBy", "_id name")
-        .populate("comments.postedBy", "_id firstName")
         .then(posts => {
             res.json({posts})
         })
