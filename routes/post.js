@@ -18,6 +18,7 @@ router.post('/create-property', (req, res) => {
         startDate,
         maturityDate,
         expectedReturns,
+        timeExpectedReturns,
         payoutType,
         unitType,
         investmentType,
@@ -37,6 +38,7 @@ router.post('/create-property', (req, res) => {
         startDate,
         maturityDate,
         expectedReturns,
+        timeExpectedReturns,
         payoutType,
         unitType,
         investmentType,
@@ -94,14 +96,12 @@ router.get('/property/details/:id', (req, res) => {
     })
 })
 
-router.delete('/delete-post/:postId', requireAdminLogin, (req, res) => {
-    Post.findOne({_id: req.params.postId})
-    .populate("postedBy", "_id")
+router.delete('/property/delete/:id', (req, res) => {
+    Post.findOne({_id: req.params.id})
     .exec((err, post) => {
         if(err || !post){
             return res.status(422).json({error: err})
-        }
-        if(post.postedBy._id.toString() === req.admin._id.toString()){
+        }else{
             post.remove()
             .then(result => {
                 res.json({message: "successfully deleted"})

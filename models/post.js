@@ -31,6 +31,9 @@ const postSchema = new mongoose.Schema({
     expectedReturns: {
         type: Number
     },
+    timeExpectedReturns: {
+        type: Number
+    },
     payoutType: {
         type: String
     },
