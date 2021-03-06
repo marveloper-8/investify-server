@@ -17,10 +17,12 @@ const postSchema = new mongoose.Schema({
         type: String
     },
     numberOfUnits: {
-        type: Number
+        type: Number,
+        default: 0
     },
     price: {
-        type: Number
+        type: Number,
+        default:0
     },
     startDate: {
         type: Date
@@ -29,10 +31,12 @@ const postSchema = new mongoose.Schema({
         type: Date
     },
     expectedReturns: {
-        type: Number
+        type: Number,
+        default:0
     },
     timeExpectedReturns: {
-        type: Number
+        type: Number,
+        default:0
     },
     payoutType: {
         type: String
