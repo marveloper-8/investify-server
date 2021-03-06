@@ -78,7 +78,7 @@ router.get('/all-properties', (req, res) => {
 //     })
 // })
 
-router.get('/properties-details/:id', (req, res) => {
+router.get('/property/details/:id', (req, res) => {
     Post.findOne({_id: req.params.id})
     .then(post => {
         Post.find({postId: req.params.id})
