@@ -8,16 +8,18 @@ const Collection = mongoose.model("Collection")
 // collections
 router.post('/create-collection', (req, res) => {
     const {
-        collectionName,
-        collectionType
+        label,
+        value,
+        type
     } = req.body
-    if(!collectionName){
+    if(!label){
         return res.status(422).json({error: "Please add name"})
     }
     
     const collection = new Collection({
-        collectionName,
-        collectionType,
+        label,
+        value,
+        type,
         postedBy: req.admin
     })
     collection.save().then(result => {

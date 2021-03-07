@@ -2,11 +2,15 @@ const mongoose = require('mongoose')
 const {ObjectId} = mongoose.Schema.Types
 
 const collectionSchema = new mongoose.Schema({
-    collectionName: {
+    label: {
         type: String,
         required: true
     },
-    collectionType: {
+    value: {
+        type: String,
+        required: true
+    },
+    type: {
         type: String
     },
     postedBy: {
