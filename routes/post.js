@@ -67,7 +67,7 @@ router.get('/all-properties', (req, res) => {
 router.get('/rr-bf-table', (req, res) => {
     Post.find()
         .then(posts => {
-            res.json({posts})
+            res.json({rr_bf_table})
         })
         .catch(err => {
             console.log(err)
