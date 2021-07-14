@@ -64,6 +64,16 @@ router.get('/all-properties', (req, res) => {
         })
 })
 
+router.get('/rr-bf-table', (req, res) => {
+    Post.find()
+        .then(posts => {
+            res.json({posts})
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
+
 // router.get('/properties-details/:id', (req, res) => {
 //     Post.findOne({_id: req.params.id})
 //     .then(post => {
