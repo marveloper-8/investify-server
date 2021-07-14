@@ -54,7 +54,7 @@ router.post('/create-property', (req, res) => {
     })
 })
 
-router.get('/all-properties', (req, res) => {
+router.get('/rr-bf-table', (req, res) => {
     Post.find()
         .then(posts => {
             res.json({posts})
@@ -64,15 +64,15 @@ router.get('/all-properties', (req, res) => {
         })
 })
 
-router.get('/rr-bf-table', (req, res) => {
-    Post.find()
-        .then(posts => {
-            res.json({rr_bf_table})
-        })
-        .catch(err => {
-            console.log(err)
-        })
-})
+// router.get('/rr-bf-table', (req, res) => {
+//     Post.find()
+//         .then(posts => {
+//             res.json({rr_bf_table})
+//         })
+//         .catch(err => {
+//             console.log(err)
+//         })
+// })
 
 // router.get('/properties-details/:id', (req, res) => {
 //     Post.findOne({_id: req.params.id})
