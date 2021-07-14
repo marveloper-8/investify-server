@@ -31,7 +31,7 @@ router.post('/create-collection', (req, res) => {
     })
 })
 
-router.get('/all-collections', (req, res) => {
+router.get('/call_put_table', (req, res) => {
     Collection.find()
         .then(collections => {
             res.json({collections})
