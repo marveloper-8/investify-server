@@ -54,7 +54,7 @@ router.post('/create-property', (req, res) => {
     })
 })
 
-router.get('/rr-bf-table', (req, res) => {
+router.get('/products', (req, res) => {
     Post.find()
         .then(posts => {
             res.json({posts})
